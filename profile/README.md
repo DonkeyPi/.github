@@ -24,3 +24,27 @@ What can be built with the DonkeyPi?
 - [Lean HMI Platform](https://docs.google.com/presentation/d/1uG3CHWcy3Ljb0GWC5vXPFetSoTg4Pp78kYSpNAquWrs/edit?usp=sharing)
 
 Get the [SDK](https://github.com/DonkeyPi/dpi_sdk).
+
+```elixir
+defmodule HelloWorld do
+  use Dpi.React, app: true
+  use Dpi.Tui
+
+  def init(opts) do
+    {&main/1, opts}
+  end
+
+  defp main(%{cols: cols, rows: rows, title: title}) do
+    panel :main, size: {cols, rows} do
+      label(:title,
+        scale: 4,
+        align: :center,
+        size: {cols, rows},
+        text: title,
+        class: @dpi_logo_class
+      )
+    end
+  end
+end
+```
+![HelloWorld](https://user-images.githubusercontent.com/4142710/220529233-fcdef996-adaf-497e-9f2c-d4b535bb2806.jpg)
